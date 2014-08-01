@@ -56,7 +56,6 @@ $ vagrant up
 ```
 
 ## Contributing
-[![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/53da2bea87659fce66003fa9)
 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests and examples for any new or changed functionality.
 
