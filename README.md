@@ -1,7 +1,7 @@
 # Ansible Environment Role
 
-[![Build Status](https://travis-ci.org/weareinteractive/ansible-role-environment.png?branch=master)](https://travis-ci.org/weareinteractive/ansible-role-environment)
-[![Stories in Ready](https://badge.waffle.io/weareinteractive/ansible-role-environment.svg?label=ready&title=Ready)](http://waffle.io/weareinteractive/ansible-role-environment)
+[![Build Status](https://travis-ci.org/weareinteractive/ansible-environment.png?branch=master)](https://travis-ci.org/weareinteractive/ansible-environment)
+[![Stories in Ready](https://badge.waffle.io/weareinteractive/ansible-environment.svg?label=ready&title=Ready)](http://waffle.io/weareinteractive/ansible-environment)
 
 > `environmanet` is an [Ansible](http://www.ansible.com) role which:
 > 
@@ -24,7 +24,7 @@ $ arm install franklinkim.environment
 Using `git`:
 
 ```
-$ git clone https://github.com/weareinteractive/ansible-role-environment.git
+$ git clone https://github.com/weareinteractive/ansible-environment.git
 ```
 
 ## Variables
@@ -50,8 +50,8 @@ environment_config: []
 ## Testing
 
 ```
-$ git clone https://github.com/weareinteractive/ansible-role-environment.git
-$ cd ansible-role-environment
+$ git clone https://github.com/weareinteractive/ansible-environment.git
+$ cd ansible-environment
 $ vagrant up
 ```
 
