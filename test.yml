@@ -1,11 +1,8 @@
 ---
 
 - hosts: all
-  vars_files:
-    - 'defaults/main.yml'
-  tasks:
-    - include: 'tasks/main.yml'
-      vars:
-        environment_config:
-          - { name: LC_ALL, value: en_US.UTF-8 }
-
+  roles:
+    - franklinkim.environment
+  vars:
+    environment_config:
+      - { name: LC_ALL, value: C }

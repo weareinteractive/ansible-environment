@@ -29,9 +29,11 @@ $ git clone https://github.com/weareinteractive/ansible-environment.git
 
 ## Variables
 
+Here is a list of all the default variables for this role, which are also available in `defaults/main.yml`.
+
 ```
 # environment_config:
-#   - { name: LC_ALL, value: en_US.UTF-8 }
+#   - { name: LC_ALL, value: C }
 #
 environment_config: []
 ```
@@ -44,7 +46,7 @@ environment_config: []
     - franklinkim.environment
   vars:
     environment_config:
-      - { name: LC_ALL, value: en_US.UTF-8 }
+      - { name: LC_ALL, value: C }
 ```
 
 ## Testing
