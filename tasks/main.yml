@@ -1,10 +1,3 @@
 ---
 
-- name: Configuring environment
-  lineinfile: >
-    dest=/etc/environment
-    line='{{ item.name }}="{{ item.value }}"'
-  with_items: environment_config
-  tags:
-    - system
-    - environment
+- include: config.yml
