@@ -5,4 +5,4 @@
 # environment_config:
 #   - { name: LC_ALL, value: en_US.UTF-8 }
 #
-environment_config: []
+environment_config:
