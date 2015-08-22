@@ -1,22 +1,14 @@
 ---
 
 - name: Remove previous values
-  lineinfile: >
-    dest=/etc/environment
-    regexp='^{{ item.key | upper }}'
-    state=absent
+  lineinfile:
+    dest: /etc/environment
+    regexp: '^{{ item.key | upper }}'
+    state: absent
   with_dict: environment_config
-  tags:
-    - system
-    - environment
-    - config
 
 - name: Configuring environment
-  lineinfile: >
-    dest=/etc/environment
-    line='{{ item.key | upper }}="{{ item.value }}"'
+  lineinfile:
+    dest:/etc/environment
+    line: '{{ item.key | upper }}="{{ item.value }}"'
   with_dict: environment_config
-  tags:
-    - system
-    - environment
-    - config
