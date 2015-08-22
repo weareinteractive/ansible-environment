@@ -1,8 +1,9 @@
 ---
 
 - hosts: all
+  sudo: yes
   roles:
     - franklinkim.environment
   vars:
     environment_config:
-      - { name: LC_ALL, value: C }
+      LC_ALL: C
