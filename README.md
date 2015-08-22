@@ -1,10 +1,12 @@
 # Ansible Environment Role
 
-[![Build Status](https://travis-ci.org/weareinteractive/ansible-environment.png?branch=master)](https://travis-ci.org/weareinteractive/ansible-environment)
-[![Stories in Ready](https://badge.waffle.io/weareinteractive/ansible-environment.svg?label=ready&title=Ready)](http://waffle.io/weareinteractive/ansible-environment)
+[![Build Status](https://img.shields.io/travis/weareinteractive/ansible-environment.svg)](https://travis-ci.org/weareinteractive/ansible-environment)
+[![Galaxy](http://img.shields.io/badge/galaxy-franklinkim.environment-blue.svg)](https://galaxy.ansible.com/list#/roles/1408)
+[![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
+[![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
 
 > `environmanet` is an [Ansible](http://www.ansible.com) role which:
-> 
+>
 > * adds `/etc/environment` variables
 
 ## Installation
@@ -15,16 +17,16 @@ Using `ansible-galaxy`:
 $ ansible-galaxy install franklinkim.environment
 ```
 
-Using `arm` ([Ansible Role Manager](https://github.com/mirskytech/ansible-role-manager/)):
+Using `requirements.yml`:
 
 ```
-$ arm install franklinkim.environment
+- src: franklinkim.environment
 ```
 
 Using `git`:
 
 ```
-$ git clone https://github.com/weareinteractive/ansible-environment.git
+$ git clone https://github.com/weareinteractive/ansible-environment.git franklinkim.environment
 ```
 
 ## Variables
@@ -33,20 +35,21 @@ Here is a list of all the default variables for this role, which are also availa
 
 ```
 # environment_config:
-#   - { name: LC_ALL, value: C }
+#   LC_ALL: en_US.UTF-8
 #
-environment_config: []
+environment_config:
 ```
 
 ## Example playbook
 
 ```
-- host: all
-  roles: 
+- hosts: all
+  sudo: yes
+  roles:
     - franklinkim.environment
   vars:
     environment_config:
-      - { name: LC_ALL, value: C }
+      LC_ALL: C
 ```
 
 ## Testing
