@@ -5,4 +5,5 @@
 # environment_config:
 #   LC_ALL: en_US.UTF-8
 #
+environment_file: /etc/environment
 environment_config:
