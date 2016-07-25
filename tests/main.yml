@@ -1,7 +1,6 @@
 ---
 
 - hosts: all
-  sudo: yes
   roles:
     - franklinkim.environment
   vars:

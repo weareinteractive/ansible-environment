@@ -1,5 +1,2 @@
-.*
-*~
-!.git*
-!.travis.yml
-vagrant_*
+.DS_Store
+.vagrant

@@ -1,8 +1,13 @@
 ---
-# For more information about default variables see:
-# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
+
+# Path to the environment file
+environment_file: /etc/environment
+# The environment file owner
+environment_file_owner: root
+# The environment file group
+environment_file_group: root
+# A dictionary of config parameters i.e
 #
 # environment_config:
 #   LC_ALL: en_US.UTF-8
-#
 environment_config:
