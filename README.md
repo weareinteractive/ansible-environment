@@ -33,6 +33,9 @@ $ git clone https://github.com/weareinteractive/ansible-environment.git franklin
 
 Here is a list of all the default variables for this role, which are also available in `defaults/main.yml`.
 
+environment_file: /etc/environment
+environment_config:
+
 ```
 # environment_config:
 #   LC_ALL: en_US.UTF-8
@@ -48,9 +51,12 @@ environment_config:
   roles:
     - franklinkim.environment
   vars:
+  	environment_file: /some/other/place/.env
     environment_config:
       LC_ALL: C
 ```
+
+Default is to work on /env/environment.
 
 ## Testing
 
