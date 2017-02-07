@@ -1,3 +1,13 @@
+<a name="1.2.2"></a>
+### 1.2.2 (2017-02-07)
+
+
+#### Features
+
+*   ensure file exists only changes when file is created ([41cbbbc6](https://github.com/weareinteractive/ansible-environment/commit/41cbbbc626a702574d25da3cc07b24feed36d00e))
+
+
+
 <a name="1.2.0"></a>
 ## 1.2.0 (2016-07-25)
 

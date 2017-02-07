@@ -6,6 +6,8 @@
     owner: "{{ environment_file_owner }}"
     group: "{{ environment_file_group }}"
     state: touch
+  register: environment_file_result
+  changed_when: environment_file_result.diff.before.state != "file"
 
 - name: Remove previous values
   lineinfile:
