@@ -12,12 +12,12 @@
 - name: Remove previous values
   lineinfile:
     dest: "{{ environment_file }}"
-    regexp: '^{{ item.key | upper }}'
+    regexp: '^{{ item.key }}'
     state: absent
   with_dict: "{{ environment_config }}"
 
 - name: Configuring environment
   lineinfile:
     dest: "{{ environment_file }}"
-    line: "{{ item.key | upper }}='{{ item.value }}'"
+    line: "{{ item.key }}='{{ item.value }}'"
   with_dict: "{{ environment_config }}"
