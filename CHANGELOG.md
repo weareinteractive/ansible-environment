@@ -1,3 +1,13 @@
+<a name="1.2.3"></a>
+### 1.2.3 (2017-03-09)
+
+
+#### Features
+
+*   remove enforcement for upper key-names ([0fb9b167](https://github.com/weareinteractive/ansible-environment/commit/0fb9b16797f9c47ced17ebe4cadd8f2d59fddd3d))
+
+
+
 <a name="1.2.2"></a>
 ### 1.2.2 (2017-02-07)
 
