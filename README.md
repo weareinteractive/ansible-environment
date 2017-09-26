@@ -50,7 +50,7 @@ environment_file_group: root
 #
 # environment_config:
 #   LC_ALL: en_US.UTF-8
-environment_config:
+environment_config: {}
 
 ```
 
