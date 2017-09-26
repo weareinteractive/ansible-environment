@@ -1,3 +1,13 @@
+<a name="1.2.4"></a>
+### 1.2.4 (2017-09-26)
+
+
+#### Features
+
+*   set default environment config as a dict ([cd52980b](https://github.com/weareinteractive/ansible-environment/commit/cd52980b9ad9576d891f2af417f98fa305c48f48))
+
+
+
 <a name="1.2.3"></a>
 ### 1.2.3 (2017-03-09)
 
