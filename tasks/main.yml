@@ -1,6 +1,6 @@
 ---
 
-- include: config.yml
+- import_tasks: config.yml
   tags:
     - system
     - environment
