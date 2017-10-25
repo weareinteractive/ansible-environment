@@ -12,7 +12,7 @@
 - name: Remove previous values
   lineinfile:
     dest: "{{ environment_file }}"
-    regexp: '^{{ item.key }}'
+    regexp: '^{{ item.key }}\ ?='
     state: absent
   with_dict: "{{ environment_config }}"
 

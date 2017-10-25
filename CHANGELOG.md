@@ -1,3 +1,14 @@
+<a name="1.3.0"></a>
+## 1.3.0 (2017-10-25)
+
+
+#### Features
+
+*   make role > 2.4 conform ([a35b8cbc](https://github.com/weareinteractive/ansible-environment/commit/a35b8cbc222fccf6b59753a6892b06c228a4d66a))
+*   change regex to match full key when removing it ([51772aa4](https://github.com/weareinteractive/ansible-environment/commit/51772aa4394ffb72965859cf4ebcc33741a8a64e))
+
+
+
 <a name="1.2.4"></a>
 ### 1.2.4 (2017-09-26)
 
