@@ -1,2 +1,3 @@
 .DS_Store
 .vagrant
+tests/main.retry

@@ -2,7 +2,7 @@
 
 - name: Ensure file exists
   file:
-    path: "{{ environment_file }}"
+    path: "{{ system_environment_file }}"
     owner: "{{ environment_file_owner }}"
     group: "{{ environment_file_group }}"
     state: touch
@@ -11,13 +11,14 @@
 
 - name: Remove previous values
   lineinfile:
-    dest: "{{ environment_file }}"
+    dest: "{{ system_environment_file }}"
     regexp: '^{{ item.key }}\ ?='
     state: absent
   with_dict: "{{ environment_config }}"
 
 - name: Configuring environment
   lineinfile:
-    dest: "{{ environment_file }}"
-    line: "{{ item.key }}='{{ item.value }}'"
+    dest: "{{ system_environment_file }}"
+    line: "{{ item.key }}='{{ item.value if item.value is string else item.value.value }}'"
   with_dict: "{{ environment_config }}"
+  when: item.value is string or (item.value.environments is defined and 'system' in item.value.environments)

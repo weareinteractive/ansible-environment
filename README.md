@@ -40,8 +40,9 @@ Here is a list of all the default variables for this role, which are also availa
 ```yaml
 ---
 
-# Path to the environment file
-environment_file: /etc/environment
+# Path to the environment files
+system_environment_file: /etc/environment
+php_fpm_environmnet_file: /etc/php/7.1/fpm/pool.d/www.conf
 # The environment file owner
 environment_file_owner: root
 # The environment file group
@@ -49,7 +50,13 @@ environment_file_group: root
 # A dictionary of config parameters i.e
 #
 # environment_config:
-#   LC_ALL: en_US.UTF-8
+#   LC_ALL: en_US.UTF-8  # Added to system environment
+#   APP_ENV: 
+#     value: prod
+#     environments: [system, php-fpm]  # Added to system and php-fpm environments
+#   APP_PASSWORD:
+#     value: security
+#     environments: [php-fpm]  # Added to php-fpm environment
 environment_config: {}
 
 ```
@@ -67,7 +74,13 @@ This is an example playbook:
     - franklinkim.environment
   vars:
     environment_config:
-      LC_ALL: C
+      LC_ALL: en_US.UTF-8  # Added to system environment
+      APP_ENV: 
+        value: prod
+        environments: [system, php-fpm]  # Added to system and php-fpm environments
+      APP_PASSWORD:
+        value: security
+        environments: [php-fpm]  # Added to php-fpm environment
 
 ```
 
