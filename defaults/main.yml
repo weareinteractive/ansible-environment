@@ -2,7 +2,7 @@
 
 # Path to the environment files
 system_environment_file: /etc/environment
-php_fpm_environmnet_file: /etc/php/7.1/fpm/pool.d/www.conf
+php_fpm_environmnet_file:  # Set this to ennable php-fpm environment variables
 # The environment file owner
 environment_file_owner: root
 # The environment file group

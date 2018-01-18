@@ -42,7 +42,7 @@ Here is a list of all the default variables for this role, which are also availa
 
 # Path to the environment files
 system_environment_file: /etc/environment
-php_fpm_environmnet_file: /etc/php/7.1/fpm/pool.d/www.conf
+php_fpm_environmnet_file:  # Set this to ennable php-fpm environment variables
 # The environment file owner
 environment_file_owner: root
 # The environment file group
@@ -73,6 +73,7 @@ This is an example playbook:
   roles:
     - franklinkim.environment
   vars:
+    php_fpm_environment_file: /etc/php-fpm.www.conf
     environment_config:
       LC_ALL: en_US.UTF-8  # Added to system environment
       APP_ENV: 
