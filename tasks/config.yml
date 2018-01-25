@@ -26,6 +26,11 @@
     state: absent
   with_dict: "{{ environment_config }}"
 
+# The config goes into the system environmnet file if:
+#   * the value is just a string (the default backwards compatible case)
+#   * the value is a dict that contains 
+#       * a 'value' string and;
+#       * an 'environments' list that contains 'system'
 - name: Configuring system environment
   lineinfile:
     dest: "{{ system_environment_file }}"
@@ -41,9 +46,13 @@
   with_dict: "{{ environment_config }}"
   when: php_fpm_environment_file is defined and (item.value.environments is defined and 'php-fpm' in item.value.environments)
 
+# The config goes into the php-fpm environment file if:
+#   * the value is a dict that contains 
+#       * a 'value' string and;
+#       * an 'environments' list that contains 'php-fpm'
 - name: Configuring php-fpm environment
   lineinfile:
     dest: "{{ php_fpm_environment_file }}"
-    line: 'env[{{ item.key }}] = "{{ item.value }}"'
+    line: 'env[{{ item.key }}] = "{{ item.value.value }}"'
   with_dict: "{{ environment_config }}"
   when: php_fpm_environment_file is defined and (item.value.environments is defined and 'php-fpm' in item.value.environments)
