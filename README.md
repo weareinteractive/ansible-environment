@@ -45,9 +45,9 @@ Here is a list of all the default variables for this role, which are also availa
 system_environment_file: /etc/environment
 
 # Set this to ennable php-fpm environment variables
-php_fpm_environmnet_file:
+php_fpm_environment_file: ''
 # Set this if you want the php-fpm service restarted
-php_fpm_service_name:
+php_fpm_service_name: ''
 
 # The environment file owner
 environment_file_owner: root
@@ -80,7 +80,7 @@ This is an example playbook:
     - franklinkim.environment
   vars:
     php_fpm_environment_file: /etc/php-fpm.www.conf
-    php_fpm_service_name: # Specify this to restart the php-fpm service
+    php_fpm_service_name: '' # Specify this to restart the php-fpm service
     environment_config:
       LC_ALL: en_US.UTF-8  # Added to system environment
       APP_ENV: 

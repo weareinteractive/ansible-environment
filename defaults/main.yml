@@ -4,9 +4,9 @@
 system_environment_file: /etc/environment
 
 # Set this to ennable php-fpm environment variables
-php_fpm_environmnet_file:
+php_fpm_environment_file: ''
 # Set this if you want the php-fpm service restarted
-php_fpm_service_name:
+php_fpm_service_name: ''
 
 # The environment file owner
 environment_file_owner: root
