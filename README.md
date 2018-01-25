@@ -1,33 +1,35 @@
-# Ansible franklinkim.environment role
+# Ansible ndench.environment role
 
-[![Build Status](https://img.shields.io/travis/weareinteractive/ansible-environment.svg)](https://travis-ci.org/weareinteractive/ansible-environment)
-[![Galaxy](http://img.shields.io/badge/galaxy-weareinteractive.environment-blue.svg)](https://galaxy.ansible.com/weareinteractive/environment)
-[![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
-[![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
+[![Build Status](https://img.shields.io/travis/ndench/ansible-environment.svg)](https://travis-ci.org/ndench/ansible-environment)
+[![Galaxy](http://img.shields.io/badge/galaxy-ndench.environment-blue.svg)](https://galaxy.ansible.com/ndench/environment)
+[![GitHub Tags](https://img.shields.io/github/tag/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
+[![GitHub Stars](https://img.shields.io/github/stars/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
 
-> `franklinkim.environment` is an [Ansible](http://www.ansible.com) role which:
+> `ndench.environment` is an [Ansible](http://www.ansible.com) role which:
 >
 > * adds `/etc/environment` variables
 > * adds php-fpm `pool.d/www.conf` variables
+>
+> Credit to the [franklinkim.environment](https://github.com/weareinteractive/ansible-environment) role which sets the system environment variables.
 
 ## Installation
 
 Using `ansible-galaxy`:
 
 ```shell
-$ ansible-galaxy install franklinkim.environment
+$ ansible-galaxy install ndench.environment
 ```
 
 Using `requirements.yml`:
 
 ```yaml
-- src: franklinkim.environment
+- src: ndench.environment
 ```
 
 Using `git`:
 
 ```shell
-$ git clone https://github.com/weareinteractive/ansible-environment.git franklinkim.environment
+$ git clone https://github.com/ndench/ansible-environment.git ndench.environment
 ```
 
 ## Dependencies
@@ -96,7 +98,7 @@ This is an example playbook:
 ## Testing
 
 ```shell
-$ git clone https://github.com/weareinteractive/ansible-environment.git
+$ git clone https://github.com/ndench/ansible-environment.git
 $ cd ansible-environment
 $ make test
 ```
@@ -118,4 +120,4 @@ $ ansible-role docgen
 ```
 
 ## License
-Copyright (c) We Are Interactive under the MIT license.
+Copyright (c) Nathan Dench under the MIT license.

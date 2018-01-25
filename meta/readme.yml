@@ -1,12 +1,14 @@
 ---
-galaxy_name: franklinkim.environment
-github_user: weareinteractive
+galaxy_name: ndench.environment
+github_user: ndench
 github_name: ansible-environment
 badges: |
-  [![Build Status](https://img.shields.io/travis/weareinteractive/ansible-environment.svg)](https://travis-ci.org/weareinteractive/ansible-environment)
-  [![Galaxy](http://img.shields.io/badge/galaxy-weareinteractive.environment-blue.svg)](https://galaxy.ansible.com/weareinteractive/environment)
-  [![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
-  [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
+  [![Build Status](https://img.shields.io/travis/ndench/ansible-environment.svg)](https://travis-ci.org/ndench/ansible-environment)
+  [![Galaxy](http://img.shields.io/badge/galaxy-ndench.environment-blue.svg)](https://galaxy.ansible.com/ndench/environment)
+  [![GitHub Tags](https://img.shields.io/github/tag/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
+  [![GitHub Stars](https://img.shields.io/github/stars/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
 description: |
   > * adds `/etc/environment` variables
   > * adds php-fpm `pool.d/www.conf` variables
+  >
+  > Credit to the [franklinkim.environment](https://github.com/weareinteractive/ansible-environment) role which sets the system environment variables.

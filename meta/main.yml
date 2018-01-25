@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: franklin
-  company: We Are Interactive
-  description: Adds /etc/environment variables
+  author: ndench
+  company: Nathan Dench
+  description: Adds /etc/environment and php www.conf variables
   min_ansible_version: 2.4
   license: MIT
   # Optionally specify the branch Galaxy will use when accessing the GitHub
