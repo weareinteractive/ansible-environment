@@ -2,7 +2,12 @@
 
 # Path to the environment files
 system_environment_file: /etc/environment
-php_fpm_environmnet_file:  # Set this to ennable php-fpm environment variables
+
+# Set this to ennable php-fpm environment variables
+php_fpm_environmnet_file:
+# Set this if you want the php-fpm service restarted
+php_fpm_service_name:
+
 # The environment file owner
 environment_file_owner: root
 # The environment file group

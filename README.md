@@ -8,6 +8,7 @@
 > `franklinkim.environment` is an [Ansible](http://www.ansible.com) role which:
 >
 > * adds `/etc/environment` variables
+> * adds php-fpm `pool.d/www.conf` variables
 
 ## Installation
 
@@ -42,7 +43,12 @@ Here is a list of all the default variables for this role, which are also availa
 
 # Path to the environment files
 system_environment_file: /etc/environment
-php_fpm_environmnet_file:  # Set this to ennable php-fpm environment variables
+
+# Set this to ennable php-fpm environment variables
+php_fpm_environmnet_file:
+# Set this if you want the php-fpm service restarted
+php_fpm_service_name:
+
 # The environment file owner
 environment_file_owner: root
 # The environment file group
@@ -74,6 +80,7 @@ This is an example playbook:
     - franklinkim.environment
   vars:
     php_fpm_environment_file: /etc/php-fpm.www.conf
+    php_fpm_service_name: # Specify this to restart the php-fpm service
     environment_config:
       LC_ALL: en_US.UTF-8  # Added to system environment
       APP_ENV: 

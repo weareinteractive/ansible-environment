@@ -56,3 +56,10 @@
     line: 'env[{{ item.key }}] = "{{ item.value.value }}"'
   with_dict: "{{ environment_config }}"
   when: php_fpm_environment_file is defined and (item.value.environments is defined and 'php-fpm' in item.value.environments)
+
+- name: restart php-fpm
+  systemd: 
+    name: "{{ php_fpm_service_name }}"
+    state: restarted
+  when: php_fpm_service_name is defined
+
