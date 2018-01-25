@@ -9,3 +9,4 @@ badges: |
   [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
 description: |
   > * adds `/etc/environment` variables
+  > * adds php-fpm `pool.d/www.conf` variables
