@@ -121,3 +121,26 @@ $ ansible-role docgen
 
 ## License
 Copyright (c) Nathan Dench under the MIT license.
+
+## TODO:
+
+Change the environment name from php-fpm to php.ini
+Add ability to specify multiple files:
+
+```yaml
+environment_files:
+    www.conf: 
+        path: /etc/php-fpm.www.conf
+        format: php.ini
+    sys:
+        path: /etc/environment
+        format: system
+environment_config:
+    LC_ALL: en_US.UTF-8  # Added to system environment
+    APP_ENV: 
+        value: prod
+        environment_files: [sys, www.conf]  # Added to system and php-fpm environments
+    APP_PASSWORD:
+        value: security
+        environment_files: [www.conf]  # Added to php-fpm environment
+```
