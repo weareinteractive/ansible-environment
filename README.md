@@ -43,29 +43,39 @@ Here is a list of all the default variables for this role, which are also availa
 ```yaml
 ---
 
-# Path to the environment files
-system_environment_file: /etc/environment
-
-# Set this to ennable php-fpm environment variables
-php_fpm_environment_file: ''
-# Set this if you want the php-fpm service restarted
-php_fpm_service_name: ''
-
-# The environment file owner
-environment_file_owner: root
-# The environment file group
-environment_file_group: root
-# A dictionary of config parameters i.e
+# A dictionary of environment files i.e
+# environment_files:
+#   # Keys can be anything, as long as they're unique
+#   # They're used in the files section of each environment_config
+#   env:
+#     path: /etc/environment
+#     format: system
+#     owner: root
+#     group: root
 #
+#   www.conf: 
+#     path: /etc/php/7.1/fpm/pool.d/www.conf
+#     format: php.ini
+#     service: php7.1-fpm  # Service to restart once changes are made
+environment_files:
+    system:
+        path: /etc/environment
+        format: system
+
+# A dictionary of config parameters i.e
 # environment_config:
-#   LC_ALL: en_US.UTF-8  # Added to system environment
+#   LC_ALL: 
+#     value: en_US.UTF-8
+#     environment_files: [env]  # Added to env environment_file
 #   APP_ENV: 
 #     value: prod
-#     environments: [system, php-fpm]  # Added to system and php-fpm environments
+#     environment_files: [env, www.conf]  # Added to env and www.conf environment_files
 #   APP_PASSWORD:
 #     value: security
-#     environments: [php-fpm]  # Added to php-fpm environment
+#     environment_files: [www.conf]  # Added to www.conf environment
 environment_config: {}
+
+
 
 ```
 
@@ -79,18 +89,33 @@ This is an example playbook:
 
 - hosts: all
   roles:
-    - franklinkim.environment
+    - ndench.environment
   vars:
-    php_fpm_environment_file: /etc/php-fpm.www.conf
-    php_fpm_service_name: '' # Specify this to restart the php-fpm service
+    environment_files:
+      # Keys can be anything, as long as they're unique
+      # They're used in the files section of each environment_config
+      env:
+        path: /etc/system.environment
+        format: system
+        owner: root
+        group: root
+
+      www.conf: 
+        # Test box doesn't have php installed
+        path: /etc/php.ini_pool.d_www.conf
+        format: php.ini
+        #service: php7.1-fpm  # Service to restart once changes are made
+
     environment_config:
-      LC_ALL: en_US.UTF-8  # Added to system environment
-      APP_ENV: 
+      - key: LC_ALL
+        value: en_US.UTF-8
+        files: [env]  # Added to system environment
+      - key: APP_ENV
         value: prod
-        environments: [system, php-fpm]  # Added to system and php-fpm environments
-      APP_PASSWORD:
+        files: [env, www.conf]  # Added to system and php-fpm environments
+      - key: APP_PASSWORD
         value: security
-        environments: [php-fpm]  # Added to php-fpm environment
+        files: [www.conf]  # Added to php-fpm environment
 
 ```
 
@@ -121,29 +146,3 @@ $ ansible-role docgen
 
 ## License
 Copyright (c) Nathan Dench under the MIT license.
-
-## TODO:
-
-Change the environment name from php-fpm to php.ini
-Add ability to specify multiple files:
-
-```yaml
-environment_files:
-    www.conf: 
-        path: /etc/php-fpm.www.conf
-        format: php.ini
-
-    sys:
-        path: /etc/environment
-        format: system
-        service: php7.1-fpm
-
-environment_config:
-    LC_ALL: en_US.UTF-8  # Added to system environment
-    APP_ENV: 
-        value: prod
-        environment_files: [sys, www.conf]  # Added to system and php-fpm environments
-    APP_PASSWORD:
-        value: security
-        environment_files: [www.conf]  # Added to php-fpm environment
-```
