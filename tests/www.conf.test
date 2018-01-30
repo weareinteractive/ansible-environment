@@ -1,2 +1,0 @@
-env[APP_ENV] = prod
-env[APP_PASSWORD] = security
