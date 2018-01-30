@@ -2,7 +2,30 @@
 
 - hosts: all
   roles:
-    - franklinkim.environment
+    - ndench.environment
   vars:
+    environment_files:
+      # Keys can be anything, as long as they're unique
+      # They're used in the files section of each environment_config
+      env:
+        path: /etc/system.environment
+        format: system
+        owner: root
+        group: root
+
+      www.conf: 
+        # Test box doesn't have php installed
+        path: /etc/php.ini_pool.d_www.conf
+        format: php.ini
+        #service: php7.1-fpm  # Service to restart once changes are made
+
     environment_config:
-      LC_ALL: C
+      - key: LC_ALL
+        value: en_US.UTF-8
+        files: [env]  # Added to system environment
+      - key: APP_ENV
+        value: prod
+        files: [env, www.conf]  # Added to system and php-fpm environments
+      - key: APP_PASSWORD
+        value: security
+        files: [www.conf]  # Added to php-fpm environment

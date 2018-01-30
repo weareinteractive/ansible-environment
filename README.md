@@ -1,32 +1,35 @@
-# Ansible franklinkim.environment role
+# Ansible ndench.environment role
 
-[![Build Status](https://img.shields.io/travis/weareinteractive/ansible-environment.svg)](https://travis-ci.org/weareinteractive/ansible-environment)
-[![Galaxy](http://img.shields.io/badge/galaxy-weareinteractive.environment-blue.svg)](https://galaxy.ansible.com/weareinteractive/environment)
-[![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
-[![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
+[![Build Status](https://img.shields.io/travis/ndench/ansible-environment.svg)](https://travis-ci.org/ndench/ansible-environment)
+[![Galaxy](http://img.shields.io/badge/galaxy-ndench.environment-blue.svg)](https://galaxy.ansible.com/ndench/environment)
+[![GitHub Tags](https://img.shields.io/github/tag/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
+[![GitHub Stars](https://img.shields.io/github/stars/ndench/ansible-environment.svg)](https://github.com/ndench/ansible-environment)
 
-> `franklinkim.environment` is an [Ansible](http://www.ansible.com) role which:
+> `ndench.environment` is an [Ansible](http://www.ansible.com) role which:
 >
 > * adds `/etc/environment` variables
+> * adds php-fpm `pool.d/www.conf` variables
+>
+> Credit to the [franklinkim.environment](https://github.com/weareinteractive/ansible-environment) role which sets the system environment variables.
 
 ## Installation
 
 Using `ansible-galaxy`:
 
 ```shell
-$ ansible-galaxy install franklinkim.environment
+$ ansible-galaxy install ndench.environment
 ```
 
 Using `requirements.yml`:
 
 ```yaml
-- src: franklinkim.environment
+- src: ndench.environment
 ```
 
 Using `git`:
 
 ```shell
-$ git clone https://github.com/weareinteractive/ansible-environment.git franklinkim.environment
+$ git clone https://github.com/ndench/ansible-environment.git ndench.environment
 ```
 
 ## Dependencies
@@ -40,17 +43,39 @@ Here is a list of all the default variables for this role, which are also availa
 ```yaml
 ---
 
-# Path to the environment file
-environment_file: /etc/environment
-# The environment file owner
-environment_file_owner: root
-# The environment file group
-environment_file_group: root
-# A dictionary of config parameters i.e
+# A dictionary of environment files i.e
+# environment_files:
+#   # Keys can be anything, as long as they're unique
+#   # They're used in the files section of each environment_config
+#   env:
+#     path: /etc/environment
+#     format: system
+#     owner: root
+#     group: root
 #
+#   www.conf: 
+#     path: /etc/php/7.1/fpm/pool.d/www.conf
+#     format: php.ini
+#     service: php7.1-fpm  # Service to restart once changes are made
+environment_files:
+    system:
+        path: /etc/environment
+        format: system
+
+# A dictionary of config parameters i.e
 # environment_config:
-#   LC_ALL: en_US.UTF-8
+#   LC_ALL: 
+#     value: en_US.UTF-8
+#     environment_files: [env]  # Added to env environment_file
+#   APP_ENV: 
+#     value: prod
+#     environment_files: [env, www.conf]  # Added to env and www.conf environment_files
+#   APP_PASSWORD:
+#     value: security
+#     environment_files: [www.conf]  # Added to www.conf environment
 environment_config: {}
+
+
 
 ```
 
@@ -64,10 +89,33 @@ This is an example playbook:
 
 - hosts: all
   roles:
-    - franklinkim.environment
+    - ndench.environment
   vars:
+    environment_files:
+      # Keys can be anything, as long as they're unique
+      # They're used in the files section of each environment_config
+      env:
+        path: /etc/system.environment
+        format: system
+        owner: root
+        group: root
+
+      www.conf: 
+        # Test box doesn't have php installed
+        path: /etc/php.ini_pool.d_www.conf
+        format: php.ini
+        #service: php7.1-fpm  # Service to restart once changes are made
+
     environment_config:
-      LC_ALL: C
+      - key: LC_ALL
+        value: en_US.UTF-8
+        files: [env]  # Added to system environment
+      - key: APP_ENV
+        value: prod
+        files: [env, www.conf]  # Added to system and php-fpm environments
+      - key: APP_PASSWORD
+        value: security
+        files: [www.conf]  # Added to php-fpm environment
 
 ```
 
@@ -75,7 +123,7 @@ This is an example playbook:
 ## Testing
 
 ```shell
-$ git clone https://github.com/weareinteractive/ansible-environment.git
+$ git clone https://github.com/ndench/ansible-environment.git
 $ cd ansible-environment
 $ make test
 ```
@@ -97,4 +145,4 @@ $ ansible-role docgen
 ```
 
 ## License
-Copyright (c) We Are Interactive under the MIT license.
+Copyright (c) Nathan Dench under the MIT license.

@@ -1,5 +1,13 @@
 ---
 
+- import_tasks: validate.yml
+  tags:
+    - validate
+    - system
+    - environment
+    - config
+    - environment-config
+
 - import_tasks: config.yml
   tags:
     - system

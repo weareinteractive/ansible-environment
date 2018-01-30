@@ -1,23 +1,58 @@
 ---
 
-- name: Ensure file exists
+- name: Ensure each environment_file exists
   file:
-    path: "{{ environment_file }}"
-    owner: "{{ environment_file_owner }}"
-    group: "{{ environment_file_group }}"
+    path: "{{ item.value.path }}"
+    owner: "{{ item.value.owner|default(omit) }}"
+    group: "{{ item.value.owner|default(omit) }}"
     state: touch
   register: environment_file_result
   changed_when: environment_file_result.diff.before.state != "file"
+  with_dict: "{{ environment_files }}"
 
-- name: Remove previous values
+- name: Remove previous system environment values
   lineinfile:
-    dest: "{{ environment_file }}"
-    regexp: '^{{ item.key }}\ ?='
+    dest: "{{ environment_files[item.1].path }}"
+    regexp: '^{{ item.0.key }}\ ?='
     state: absent
-  with_dict: "{{ environment_config }}"
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'system'
 
-- name: Configuring environment
+- name: Add system environment values
   lineinfile:
-    dest: "{{ environment_file }}"
-    line: "{{ item.key }}='{{ item.value }}'"
-  with_dict: "{{ environment_config }}"
+    dest: "{{ environment_files[item.1].path }}"
+    line: "{{ item.0.key }}='{{ item.0.value }}'"
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'system'
+
+- name: Remove previous php.ini environment values
+  lineinfile:
+    dest: "{{ environment_files[item.1].path }}"
+    regexp: '^env\[{{ item.0.key }}\]?\ ='
+    state: absent
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'php.ini'
+
+- name: Add php.ini environment values
+  lineinfile:
+    dest: "{{ environment_files[item.1].path }}"
+    line: 'env[{{ item.0.key }}] = "{{ item.0.value }}"'
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'php.ini'
+
+- name: Restart services
+  service: 
+    name: "{{ environment_files[item.1].service }}"
+    state: restarted
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].service is defined

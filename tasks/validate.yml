@@ -1,0 +1,13 @@
+---
+
+- name: Validate environment formats
+  fail:
+    msg: The only supported environment file formats are 'system' and 'php.ini'
+  when: item.value.format not in ['system', 'php.ini']
+  with_dict: "{{ environment_files }}"
+
+- name: Validate environment config specifies valid files
+  fail:
+    msg: The specified files must exist in the environment_files dict
+  when: item.files | difference(environment_files.keys())
+  with_items: "{{ environment_config }}"

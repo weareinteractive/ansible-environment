@@ -1,13 +1,35 @@
 ---
 
-# Path to the environment file
-environment_file: /etc/environment
-# The environment file owner
-environment_file_owner: root
-# The environment file group
-environment_file_group: root
-# A dictionary of config parameters i.e
+# A dictionary of environment files i.e
+# environment_files:
+#   # Keys can be anything, as long as they're unique
+#   # They're used in the files section of each environment_config
+#   env:
+#     path: /etc/environment
+#     format: system
+#     owner: root
+#     group: root
 #
+#   www.conf: 
+#     path: /etc/php/7.1/fpm/pool.d/www.conf
+#     format: php.ini
+#     service: php7.1-fpm  # Service to restart once changes are made
+environment_files:
+    system:
+        path: /etc/environment
+        format: system
+
+# A dictionary of config parameters i.e
 # environment_config:
-#   LC_ALL: en_US.UTF-8
+#   LC_ALL: 
+#     value: en_US.UTF-8
+#     environment_files: [env]  # Added to env environment_file
+#   APP_ENV: 
+#     value: prod
+#     environment_files: [env, www.conf]  # Added to env and www.conf environment_files
+#   APP_PASSWORD:
+#     value: security
+#     environment_files: [www.conf]  # Added to www.conf environment
 environment_config: {}
+
+
