@@ -132,9 +132,12 @@ environment_files:
     www.conf: 
         path: /etc/php-fpm.www.conf
         format: php.ini
+
     sys:
         path: /etc/environment
         format: system
+        service: php7.1-fpm
+
 environment_config:
     LC_ALL: en_US.UTF-8  # Added to system environment
     APP_ENV: 

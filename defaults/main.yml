@@ -1,25 +1,35 @@
 ---
 
-# Path to the environment files
-system_environment_file: /etc/environment
-
-# Set this to ennable php-fpm environment variables
-php_fpm_environment_file: ''
-# Set this if you want the php-fpm service restarted
-php_fpm_service_name: ''
-
-# The environment file owner
-environment_file_owner: root
-# The environment file group
-environment_file_group: root
-# A dictionary of config parameters i.e
+# A dictionary of environment files i.e
+# environment_files:
+#   # Keys can be anything, as long as they're unique
+#   # They're used in the files section of each environment_config
+#   env:
+#     path: /etc/environment
+#     format: system
+#     owner: root  # Default owner is root
+#     group: root  # Default group is root
 #
+#   www.conf: 
+#     path: /etc/php/7.1/fpm/pool.d/www.conf
+#     format: php.ini
+#     service: php7.1-fpm  # Service to restart once changes are made
+environment_files:
+    system:
+        path: /etc/environment
+        format: system
+
+# A dictionary of config parameters i.e
 # environment_config:
-#   LC_ALL: en_US.UTF-8  # Added to system environment
+#   LC_ALL: 
+#     value: en_US.UTF-8
+#     environment_files: [env]  # Added to env environment_file
 #   APP_ENV: 
 #     value: prod
-#     environments: [system, php-fpm]  # Added to system and php-fpm environments
+#     environment_files: [env, www.conf]  # Added to env and www.conf environment_files
 #   APP_PASSWORD:
 #     value: security
-#     environments: [php-fpm]  # Added to php-fpm environment
+#     environment_files: [www.conf]  # Added to www.conf environment
 environment_config: {}
+
+

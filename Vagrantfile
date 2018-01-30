@@ -12,8 +12,9 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
   config.vm.provision "ansible" do |ansible|
+    ansible.compatibility_mode = "2.0"
     ansible.playbook = "tests/main.yml"
     ansible.verbose = 'vv'
-    ansible.sudo = true
+    ansible.become = true
   end
 end
