@@ -7,8 +7,8 @@
 #   env:
 #     path: /etc/environment
 #     format: system
-#     owner: root  # Default owner is root
-#     group: root  # Default group is root
+#     owner: root
+#     group: root
 #
 #   www.conf: 
 #     path: /etc/php/7.1/fpm/pool.d/www.conf

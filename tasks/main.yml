@@ -8,9 +8,9 @@
     - config
     - environment-config
 
-    #- import_tasks: config.yml
-    #  tags:
-    #    - system
-    #    - environment
-    #    - config
-    #    - environment-config
+- import_tasks: config.yml
+  tags:
+    - system
+    - environment
+    - config
+    - environment-config

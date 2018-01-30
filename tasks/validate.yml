@@ -9,5 +9,5 @@
 - name: Validate environment config specifies valid files
   fail:
     msg: The specified files must exist in the environment_files dict
-  when: item.value.files | difference(environment_files.keys())
-  with_dict: "{{ environment_config }}"
+  when: item.files | difference(environment_files.keys())
+  with_items: "{{ environment_config }}"

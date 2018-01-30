@@ -8,24 +8,24 @@
       # Keys can be anything, as long as they're unique
       # They're used in the files section of each environment_config
       env:
-        path: /etc/environment
+        path: /etc/system.environment
         format: system
-        owner: root  # Default owner is root
-        group: root  # Default group is root
+        owner: root
+        group: root
 
       www.conf: 
         # Test box doesn't have php installed
-        path: /etc/php-fpm_pool.d_www.conf
+        path: /etc/php.ini_pool.d_www.conf
         format: php.ini
-        #service: php7.1-fpm  # Service to restart once changes are made
+        service: php7.1-fpm  # Service to restart once changes are made
 
     environment_config:
-      LC_ALL: 
+      - key: LC_ALL
         value: en_US.UTF-8
         files: [env]  # Added to system environment
-      APP_ENV: 
+      - key: APP_ENV
         value: prod
         files: [env, www.conf]  # Added to system and php-fpm environments
-      APP_PASSWORD:
+      - key: APP_PASSWORD
         value: security
         files: [www.conf]  # Added to php-fpm environment

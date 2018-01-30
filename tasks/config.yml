@@ -1,65 +1,58 @@
 ---
 
-- name: Ensure system file exists
+- name: Ensure each environment_file exists
   file:
-    path: "{{ system_environment_file }}"
-    owner: "{{ environment_file_owner }}"
-    group: "{{ environment_file_group }}"
+    path: "{{ item.value.path }}"
+    owner: "{{ item.value.owner|default(omit) }}"
+    group: "{{ item.value.owner|default(omit) }}"
     state: touch
   register: environment_file_result
   changed_when: environment_file_result.diff.before.state != "file"
+  with_dict: "{{ environment_files }}"
 
-- name: Ensure php-fpm file exists
-  file:
-    path: "{{ php_fpm_environment_file }}"
-    owner: "{{ environment_file_owner }}"
-    group: "{{ environment_file_group }}"
-    state: touch
-  register: environment_file_result
-  changed_when: environment_file_result.diff.before.state != "file"
-  when: php_fpm_environment_file != ''
-
-- name: Remove previous system values
+- name: Remove previous system environment values
   lineinfile:
-    dest: "{{ system_environment_file }}"
-    regexp: '^{{ item.key }}\ ?='
+    dest: "{{ environment_files[item.1].path }}"
+    regexp: '^{{ item.0.key }}\ ?='
     state: absent
-  with_dict: "{{ environment_config }}"
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'system'
 
-# The config goes into the system environmnet file if:
-#   * the value is just a string (the default backwards compatible case)
-#   * the value is a dict that contains 
-#       * a 'value' string and;
-#       * an 'environments' list that contains 'system'
-- name: Configuring system environment
+- name: Add system environment values
   lineinfile:
-    dest: "{{ system_environment_file }}"
-    line: "{{ item.key }}='{{ item.value if item.value is string else item.value.value }}'"
-  with_dict: "{{ environment_config }}"
-  when: item.value is string or (item.value.environments is defined and 'system' in item.value.environments)
+    dest: "{{ environment_files[item.1].path }}"
+    line: "{{ item.0.key }}='{{ item.0.value }}'"
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'system'
 
-- name: Remove previous php-fpm values
+- name: Remove previous php.ini environment values
   lineinfile:
-    dest: "{{ php_fpm_environment_file }}"
-    regexp: '^env\[{{ item.key }}\]?\ ='
+    dest: "{{ environment_files[item.1].path }}"
+    regexp: '^env\[{{ item.0.key }}\]?\ ='
     state: absent
-  with_dict: "{{ environment_config }}"
-  when: php_fpm_environment_file != '' and (item.value.environments is defined and 'php-fpm' in item.value.environments)
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'php.ini'
 
-# The config goes into the php-fpm environment file if:
-#   * the value is a dict that contains 
-#       * a 'value' string and;
-#       * an 'environments' list that contains 'php-fpm'
-- name: Configuring php-fpm environment
+- name: Add php.ini environment values
   lineinfile:
-    dest: "{{ php_fpm_environment_file }}"
-    line: 'env[{{ item.key }}] = "{{ item.value.value }}"'
-  with_dict: "{{ environment_config }}"
-  when: php_fpm_environment_file != '' and (item.value.environments is defined and 'php-fpm' in item.value.environments)
+    dest: "{{ environment_files[item.1].path }}"
+    line: 'env[{{ item.0.key }}] = "{{ item.0.value }}"'
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].format == 'php.ini'
 
-- name: restart php-fpm
-  systemd: 
-    name: "{{ php_fpm_service_name }}"
+- name: Restart services
+  service: 
+    name: "{{ environment_files[item.1].service }}"
     state: restarted
-  when: php_fpm_service_name != ''
-
+  with_subelements:
+    - "{{ environment_config }}"
+    - files
+  when: environment_files[item.1].service is defined
