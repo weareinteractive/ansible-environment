@@ -1,5 +1,5 @@
 ---
-galaxy_name: franklinkim.environment
+galaxy_name: weareinteractive.environment
 github_user: weareinteractive
 github_name: ansible-environment
 badges: |
@@ -9,3 +9,7 @@ badges: |
   [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
 description: |
   > * adds `/etc/environment` variables
+
+  **Note:**
+
+  > Since Ansible Galaxy switched all role names to the organization name, this role has moved from `franklinkim.environment` to `weareinteractive.environment`!
