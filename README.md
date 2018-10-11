@@ -1,32 +1,36 @@
-# Ansible franklinkim.environment role
+# Ansible weareinteractive.environment role
 
 [![Build Status](https://img.shields.io/travis/weareinteractive/ansible-environment.svg)](https://travis-ci.org/weareinteractive/ansible-environment)
 [![Galaxy](http://img.shields.io/badge/galaxy-weareinteractive.environment-blue.svg)](https://galaxy.ansible.com/weareinteractive/environment)
 [![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
 [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-environment.svg)](https://github.com/weareinteractive/ansible-environment)
 
-> `franklinkim.environment` is an [Ansible](http://www.ansible.com) role which:
+> `weareinteractive.environment` is an [Ansible](http://www.ansible.com) role which:
 >
 > * adds `/etc/environment` variables
+
+**Note:**
+
+> Since Ansible Galaxy switched all role names to the organization name, this role has moved from `franklinkim.environment` to `weareinteractive.environment`!
 
 ## Installation
 
 Using `ansible-galaxy`:
 
 ```shell
-$ ansible-galaxy install franklinkim.environment
+$ ansible-galaxy install weareinteractive.environment
 ```
 
 Using `requirements.yml`:
 
 ```yaml
-- src: franklinkim.environment
+- src: weareinteractive.environment
 ```
 
 Using `git`:
 
 ```shell
-$ git clone https://github.com/weareinteractive/ansible-environment.git franklinkim.environment
+$ git clone https://github.com/weareinteractive/ansible-environment.git weareinteractive.environment
 ```
 
 ## Dependencies
@@ -64,7 +68,7 @@ This is an example playbook:
 
 - hosts: all
   roles:
-    - franklinkim.environment
+    - weareinteractive.environment
   vars:
     environment_config:
       LC_ALL: C

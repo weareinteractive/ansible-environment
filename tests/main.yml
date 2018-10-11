@@ -2,7 +2,7 @@
 
 - hosts: all
   roles:
-    - franklinkim.environment
+    - weareinteractive.environment
   vars:
     environment_config:
       LC_ALL: C
