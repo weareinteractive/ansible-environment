@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+## 1.4.0 (2018-10-11)
+
+
+#### Features
+
+*   update to galaxy role name ([fa75f4b3](https://github.com/weareinteractive/ansible-environment/commit/fa75f4b31ea102b32ea558f3495e653c1363a203))
+
+
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2017-10-25)
 
