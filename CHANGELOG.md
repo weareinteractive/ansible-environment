@@ -1,3 +1,13 @@
+<a name="1.4.1"></a>
+### 1.4.1 (2018-12-12)
+
+
+#### Bug Fixes
+
+*   update changed_when notation ([8d55e9c0](https://github.com/weareinteractive/ansible-environment/commit/8d55e9c0420c92ed51f69a8a9e0162f3274bf53b))
+
+
+
 <a name="1.4.0"></a>
 ## 1.4.0 (2018-10-11)
 
