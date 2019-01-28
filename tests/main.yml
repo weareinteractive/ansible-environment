@@ -6,4 +6,3 @@
   vars:
     environment_config:
       LC_ALL: C
-    environment_reset: false
