@@ -1,5 +1,6 @@
 ---
 
+
 # Path to the environment file
 environment_file: /etc/environment
 # The environment file owner
@@ -11,3 +12,5 @@ environment_file_group: root
 # environment_config:
 #   LC_ALL: en_US.UTF-8
 environment_config: {}
+# Reset removes all previous values on each run
+environment_reset: yes
