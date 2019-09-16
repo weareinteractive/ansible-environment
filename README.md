@@ -44,6 +44,7 @@ Here is a list of all the default variables for this role, which are also availa
 ```yaml
 ---
 
+
 # Path to the environment file
 environment_file: /etc/environment
 # The environment file owner
@@ -54,6 +55,7 @@ environment_file_group: root
 #
 # environment_config:
 #   LC_ALL: en_US.UTF-8
+#   PATH: "/your/path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games/"
 environment_config: {}
 
 ```
